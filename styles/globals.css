@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "DM_SANS-regular";
+  src: url("../public/Fonts/DM_Sans/DMSans-Regular.ttf");
+  font-style: "Dm_SANS_italic";
+  src: url("../public/Fonts/DM_Sans/DMSans-Bold.ttf");
+}
