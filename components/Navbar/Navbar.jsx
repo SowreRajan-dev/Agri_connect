@@ -32,7 +32,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-1">
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-end mr-5">
             <Image
               src="/images/Icons/Arrow_icon.png"
               alt="arrow-icon"

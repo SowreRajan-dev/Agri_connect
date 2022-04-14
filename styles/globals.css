@@ -8,3 +8,8 @@
   font-style: "Dm_SANS_italic";
   src: url("../public/Fonts/DM_Sans/DMSans-Bold.ttf");
 }
+
+@font-face {
+  font-family: "poppins";
+  src: url("../public/Fonts/Poppins/Poppins-Regular.ttf");
+}
