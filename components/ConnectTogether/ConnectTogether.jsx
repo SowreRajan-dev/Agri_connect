@@ -16,7 +16,7 @@ const ConnectTogether = () => {
           </div>
           <div className="flex flex-col items-start mr-28 font-light font-poppins text-md text-[#616161]">
             <p>Connecting End to End agriculture</p>
-            <p>Solutions to help the world thrive</p>edr
+            <p>Solutions to help the world thrive</p>
           </div>
           <div className="">
             <button className="w-[160px] h-[60px] mr-32 mt-10 rounded-full font-poppins font-bold text-white bg-[#20E58F] hover:bg-[#229764]">
