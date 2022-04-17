@@ -3,6 +3,7 @@ import Image from "next/image";
 import ConnectTogether from "../components/ConnectTogether/ConnectTogether";
 import FarmingContent from "../components/FarmingContent/FarmingContent";
 import FarmToHome from "../components/FarmToHome/FarmToHome";
+import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import NewsFeed from "../components/NewsFeed/NewsFeed";
 import OrdersLocation from "../components/OrdersLocation/OrdersLocation";
@@ -17,6 +18,7 @@ export default function Home() {
       <FarmToHome />
       <OrdersLocation />
       <NewsFeed />
+      <Footer />
     </div>
   );
 }

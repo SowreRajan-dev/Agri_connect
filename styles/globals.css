@@ -13,3 +13,8 @@
   font-family: "poppins";
   src: url("../public/Fonts/Poppins/Poppins-Regular.ttf");
 }
+
+@font-face {
+  font-family: "montserrat";
+  src: url("../public//Fonts/Montserrat/static/Montserrat-Regular.ttf");
+}
