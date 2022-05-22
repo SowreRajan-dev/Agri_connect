@@ -18,3 +18,13 @@
   font-family: "montserrat";
   src: url("../public//Fonts/Montserrat/static/Montserrat-Regular.ttf");
 }
+
+@font-face {
+  font-family: "roboto";
+  src: url("../public/Fonts/Roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "abel";
+  src: url("../public/Fonts/Abel/Abel-Regular.ttf");
+}

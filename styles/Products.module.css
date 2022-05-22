@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;1,100;1,300&family=Poppins:ital,wght@0,100;0,300;1,100&display=swap");
+
+.search {
+  position: absolute;
+  width: 600px;
+  height: 80px;
+  padding: 20px;
+  left: 480px;
+  top: 350px;
+  color: gray;
+  background: #ffffff;
+  border: 3px solid #727272;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.btn {
+  position: absolute;
+  width: 60px;
+  height: 53px;
+  left: 1090px;
+  top: 368px;
+  border-radius: 50%;
+  background: #000000;
+}
+
+.card {
+  position: absolute;
+  width: 448px;
+  height: 507px;
+  left: 100px;
+  top: 1092px;
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.bty {
+  margin: 18px;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background-color: #20e58f;
+  box-sizing: border-box;
+  border: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.nftcards {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5%;
+  align-items: center;
+}
+
+.nftc {
+  cursor: pointer;
+  /* background-color: #e6a582; */
+  width: 330px;
+  height: 430px;
+  padding: 25px;
+  margin-top: 2.5%;
+  margin-left: 1%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nftc:hover {
+  transform: scale(1.05);
+  transition: 0.9s;
+}
+
+.head {
+  color: white;
+  font-weight: 500;
+  font-size: 33px;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+}
+
+.isc {
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.p {
+  font-weight: 400;
+  font-size: 26px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}

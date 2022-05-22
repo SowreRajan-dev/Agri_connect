@@ -10,6 +10,8 @@ module.exports = {
         dnsansItal: ["DM_SANS-Italic", "sans-serif"],
         poppins: ["poppins", "sans-serif"],
         montserrat: ["montserrat", "sans-serif"],
+        roboto: ["roboto", "sans-serif"],
+        abel: ["abel", "sans-serif"],
       },
     },
   },
