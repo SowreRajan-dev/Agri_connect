@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import ProductSearchCard from "../components/ProductSearchCard/ProductSearchCard";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { products } from "../testData";
+import { products, searchProducts } from "../testData";
 
 function product() {
   return (
@@ -58,15 +58,19 @@ function product() {
           />
         </div>
 
-        <div className="flex flex-wrap justify-between ">
-          <div className="mb-10 cursor-pointer">
+        <div className="">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 mb-10 cursor-pointer ">
             {products.map((product) => (
-              <ProductCard
-                product={product.name}
-                key={product.id}
-                imageUrl={product.imageUrl}
-                location={product.location}
-              />
+              <>
+                <div className="hover:scale-105 transition duration-150 ease-out hover:ease-in">
+                  <ProductCard
+                    product={product.name}
+                    key={product.id}
+                    imageUrl={product.imageUrl}
+                    location={product.location}
+                  />
+                </div>
+              </>
             ))}
           </div>
         </div>
@@ -82,31 +86,21 @@ function product() {
           />
         </div>
 
-        <div className={`${Styles.nftcards} `}>
-          <ProductSearchCard
-            name="Carrot"
-            type="vegetable"
-            productImg="/Images/Bitmap.png"
-            bgColor=" #e6a582"
-          />
-          <ProductSearchCard
-            name="Carrot"
-            type="vegetable"
-            productImg="/Images/Bitmap.png"
-            bgColor=" #e6a582"
-          />
-          <ProductSearchCard
-            name="Carrot"
-            type="vegetable"
-            productImg="/Images/Bitmap.png"
-            bgColor=" #e6a582"
-          />
-          <ProductSearchCard
-            name="Banana"
-            type="Fruit"
-            productImg="/Images/Bitmap1.png"
-            bgColor="#edd251"
-          />
+        <div
+          className={`${Styles.nftcards} grid auto-cols-auto lg:grid-cols-4 md:grid-cols-2 gap-4`}
+        >
+          {searchProducts.map((product) => (
+            <>
+              <div key={product.id}>
+                <ProductSearchCard
+                  name={product.productName}
+                  type={product.type}
+                  productImg={product.imageUrl}
+                  bgColor={product.bgColor}
+                />
+              </div>
+            </>
+          ))}
         </div>
       </div>
       <Footer />

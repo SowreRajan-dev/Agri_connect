@@ -28,14 +28,14 @@ function ProductCard({ product, imageUrl, location, weight }) {
             <p className="ml-5 text-sm font-medium">2 reviews</p>
           </div>
           <div>
-            <button className="flex border-2 border-[#ac7d87]  hover:bg-[hsl(347,89%,81%)] rounded-sm items-center p-1">
+            <button className="flex border-2 rounded-[12px] bg-[#20E58F] hover:bg-[#229764]  border-transparent focus:border-transparent focus:ring-0  text-white   items-center p-2">
               <Image
-                src="/Images/Icons/shoppingCart.png"
+                src="/Images/Icons/shopping-cart.png"
                 width="20px"
                 height="20px"
                 alt="shopping cart"
               />
-              <p className="ml-3 font-semibold">Add to cart</p>
+              <p className="ml-3 font-normal">Add to cart</p>
             </button>
           </div>
         </div>

@@ -47,10 +47,8 @@
 }
 
 .nftcards {
-  display: flex;
   margin-left: 5%;
   margin-right: 5%;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 5%;
