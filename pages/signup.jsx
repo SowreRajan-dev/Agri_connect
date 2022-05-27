@@ -105,7 +105,7 @@ function signup() {
           src="/Images/undraw_handcrafts_tree.svg"
           width="400px"
           height="400px"
-          alt="bg-img"
+          alt="leaf-img"
         />
       </div>
     </div>

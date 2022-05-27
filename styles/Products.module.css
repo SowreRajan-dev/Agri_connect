@@ -47,10 +47,11 @@
 }
 
 .nftcards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 2em;
   margin-left: 5%;
   margin-right: 5%;
-  align-items: center;
-  justify-content: space-between;
   padding: 5%;
   align-items: center;
 }
@@ -91,4 +92,37 @@
   font-size: 26px;
   color: white;
   font-family: "Poppins", sans-serif;
+}
+.productCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 2em;
+}
+@media screen and (max-width: 1650px) {
+  .nftcards {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .nftcards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+  .productCards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+}
+@media screen and (max-width: 786px) {
+  .nftcards {
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 20px;
+    place-items: center;
+  }
+  .productCards {
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+  }
 }

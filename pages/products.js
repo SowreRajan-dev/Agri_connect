@@ -59,10 +59,13 @@ function product() {
         </div>
 
         <div className="">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 mb-10 cursor-pointer ">
+          <div className={`${Styles.productCards} mb-10 cursor-pointer `}>
             {products.map((product) => (
               <>
-                <div className="hover:scale-105 transition duration-150 ease-out hover:ease-in">
+                <div
+                  className="hover:scale-105 transition duration-150 ease-out hover:ease-in"
+                  key={product.id}
+                >
                   <ProductCard
                     product={product.name}
                     key={product.id}
@@ -86,9 +89,7 @@ function product() {
           />
         </div>
 
-        <div
-          className={`${Styles.nftcards} grid auto-cols-auto lg:grid-cols-4 md:grid-cols-2 gap-4`}
-        >
+        <div className={`${Styles.nftcards} `}>
           {searchProducts.map((product) => (
             <>
               <div key={product.id}>
