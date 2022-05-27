@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const Navbar = () => {
-  const selectedRoute = useState("Home");
   return (
     <>
       <nav className="flex flex-row items-center flex-wrap p-3  ">
@@ -20,13 +19,13 @@ const Navbar = () => {
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between font-dnsansItal text-[20px]">
-            <div className="underline  decoration-[#20E58F] decoration-[0.25rem] motion-safe:transition-all motion-safe:duration-200 hover:decoration-[0.25rem] focus:decoration-[0.5rem] hover:decoration-green-500/50 focus:decoration-green-500/50">
+            <div className="underline selectedTab decoration-[#20E58F] decoration-[0.25rem] motion-safe:transition-all motion-safe:duration-200 hover:decoration-[0.25rem] focus:decoration-[0.5rem] hover:decoration-green-500/50 focus:decoration-green-500/50">
               <Link href="/">Home</Link>
             </div>
-            <div>
+            <div className="selectedTab">
               <Link href="/products">Products</Link>
             </div>
-            <div>
+            <div className="selectedTab">
               <Link href="/about">About</Link>
             </div>
           </div>
@@ -39,7 +38,11 @@ const Navbar = () => {
               width={30}
               height={30}
             />
-            <p className="ml-2 font-dnsansItal  text-[26px]">Sign Up</p>
+            <Link href="/signup" passHref>
+              <p className="ml-2 font-dnsansItal cursor-pointer text-[26px]">
+                Sign Up
+              </p>
+            </Link>
           </div>
         </div>
       </nav>
