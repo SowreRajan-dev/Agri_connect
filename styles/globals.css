@@ -28,3 +28,7 @@
   font-family: "abel";
   src: url("../public/Fonts/Abel/Abel-Regular.ttf");
 }
+
+.active {
+  border-bottom: 2px solid #20e58f;
+}

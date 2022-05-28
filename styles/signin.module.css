@@ -14,7 +14,7 @@
 }
 
 .box {
-  width: 36%;
+  width: 60%;
   margin-top: 1%;
   font-size: 28px;
   text-align: center;
@@ -113,5 +113,14 @@
   .place {
     flex-direction: column;
     align-items: center;
+  }
+  .box {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .box {
+    width: 70%;
   }
 }

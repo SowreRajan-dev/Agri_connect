@@ -14,7 +14,7 @@ const ConnectTogether = () => {
               height="228px"
             />
           </div>
-          <div className="flex flex-col items-start mr-28 font-light font-poppins text-md text-[#616161]">
+          <div className="flex flex-col items-start mr-28 font-[400] font-poppins text-md text-[#494242] sm:text-xl">
             <p>Connecting End to End agriculture</p>
             <p>Solutions to help the world thrive</p>
           </div>

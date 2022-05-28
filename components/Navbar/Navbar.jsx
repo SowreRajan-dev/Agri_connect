@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+
 const Navbar = () => {
+  const router = useRouter();
   return (
     <>
       <nav className="flex flex-row items-center flex-wrap p-3  ">
@@ -19,13 +22,15 @@ const Navbar = () => {
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between font-dnsansItal text-[20px]">
-            <div className="underline selectedTab decoration-[#20E58F] decoration-[0.25rem] motion-safe:transition-all motion-safe:duration-200 hover:decoration-[0.25rem] focus:decoration-[0.5rem] hover:decoration-green-500/50 focus:decoration-green-500/50">
+            <div className={`${router.pathname === "/" ? "active" : ""} `}>
               <Link href="/">Home</Link>
             </div>
-            <div className="selectedTab">
+            <div
+              className={`${router.pathname === "/products" ? "active" : ""}`}
+            >
               <Link href="/products">Products</Link>
             </div>
-            <div className="selectedTab">
+            <div className={`${router.pathname === "/about" ? "active" : ""}`}>
               <Link href="/about">About</Link>
             </div>
           </div>
@@ -39,7 +44,7 @@ const Navbar = () => {
               height={30}
             />
             <Link href="/signup" passHref>
-              <p className="ml-2 font-dnsansItal cursor-pointer text-[26px]">
+              <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
                 Sign Up
               </p>
             </Link>
