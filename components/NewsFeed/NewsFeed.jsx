@@ -15,7 +15,7 @@ const NewsFeed = () => {
         <p>Updates</p>
       </div>
       <div className="flex items-center justify-center mt-10  ">
-        <div className="flex items-center border-2 border-[#000] w-1/2 h-[60px] text-center p-4 font-poppins rounded-md">
+        <div className="flex items-center border-2 border-[#000] w-1/2 h-[60px] text-center p-4 font-poppins rounded-md sm_max:w-[100%]">
           <input
             type="text"
             placeholder="Enter your Email"

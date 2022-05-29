@@ -3,12 +3,16 @@ import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
+import Styles from "../../styles/Nav.module.css";
 const Navbar = () => {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
+
   return (
     <>
-      <nav className="flex flex-row items-center flex-wrap p-3  ">
+      <nav className=" flex flex-row items-center flex-wrap p-3  ">
         <div className="flex-1">
           <Link href="/" passHref>
             <Image
@@ -20,8 +24,11 @@ const Navbar = () => {
             />
           </Link>
         </div>
+
         <div className="flex-1">
-          <div className="flex items-center justify-between font-dnsansItal text-[20px]">
+          <div
+            className={`${Styles.navRes} flex items-center justify-between font-dnsansItal text-[20px] `}
+          >
             <div className={`${router.pathname === "/" ? "active" : ""} `}>
               <Link href="/">Home</Link>
             </div>
@@ -36,7 +43,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-1">
-          <div className="flex items-center justify-end mr-5">
+          <div className={` flex items-center justify-end mr-5 md_max:hidden`}>
             <Image
               src="/images/Icons/Arrow_icon.png"
               alt="arrow-icon"
@@ -50,7 +57,68 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+        <biutton
+          className="flex flex-col h-12 w-12 border-2  rounded justify-center cursor-pointer items-center group md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div
+            className={`${genericHamburgerLine} ${
+              isOpen
+                ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
+                : "opacity-50 group-hover:opacity-100"
+            }`}
+          />
+          <div
+            className={`${genericHamburgerLine} ${
+              isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+            }`}
+          />
+          <div
+            className={`${genericHamburgerLine} ${
+              isOpen
+                ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
+                : "opacity-50 group-hover:opacity-100"
+            }`}
+          />
+        </biutton>
+        {isOpen && <MobileNavLine />}
       </nav>
+    </>
+  );
+};
+
+const MobileNavLine = () => {
+  const router = useRouter();
+  return (
+    <>
+      <div
+        className={`w-[100%] h-[70vh] bg-[#c2f5db] flex flex-col items-center justify-around md:hidden`}
+      >
+        <div className={`${router.pathname === "/" ? "active" : ""} `}>
+          <Link href="/">Home</Link>
+        </div>
+        <div className={`${router.pathname === "/products" ? "active" : ""}`}>
+          <Link href="/products">Products</Link>
+        </div>
+        <div className={`${router.pathname === "/about" ? "active" : ""}`}>
+          <Link href="/about">About</Link>
+        </div>
+        <div>
+          <div className={` flex items-center justify-end mr-5 `}>
+            <Image
+              src="/images/Icons/Arrow_icon.png"
+              alt="arrow-icon"
+              width={30}
+              height={30}
+            />
+            <Link href="/signup" passHref>
+              <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
+                Sign Up
+              </p>
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
