@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import ReactStars from "react-stars";
-
-function ProductCard({ product, imageUrl, location, weight }) {
+import Link from "next/link";
+function ProductCard({ pids, product, imageUrl, location, weight }) {
   return (
     <div className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl ">
       <div>
@@ -18,7 +18,9 @@ function ProductCard({ product, imageUrl, location, weight }) {
       </div>
       <div className="flex justify-between  p-2 font-roboto ">
         <div className="flex flex-col  ">
-          <h3 className="font-extrabold text-lg">{product}</h3>
+          <Link href={`/product/${pids}`} passHref>
+            <h3 className="font-extrabold text-lg">{product}</h3>
+          </Link>
           <span className="flex">
             <p className="text-lg font-light">Location :</p>{" "}
             <p className="ml-5">1.5km Apart</p>

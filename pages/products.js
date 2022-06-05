@@ -3,12 +3,16 @@ import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Styles from "../styles/Products.module.css";
 import Footer from "../components/Footer/Footer";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ProductSearchCard from "../components/ProductSearchCard/ProductSearchCard";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { products, searchProducts } from "../testData";
 
-function product() {
+function Product() {
+  const [product, setProducts] = useState("");
+
+  const [foundProduct, setFoundProduct] = useState();
   return (
     <>
       <Navbar />
@@ -68,7 +72,7 @@ function product() {
                 >
                   <ProductCard
                     product={product.name}
-                    key={product.id}
+                    pids={product.id}
                     imageUrl={product.imageUrl}
                     location={product.location}
                   />
@@ -109,4 +113,4 @@ function product() {
   );
 }
 
-export default product;
+export default Product;
