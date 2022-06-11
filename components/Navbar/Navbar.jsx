@@ -7,21 +7,33 @@ import Styles from "../../styles/Nav.module.css";
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
-
+  const onSignOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+  useEffect(() => {
+    const currUser = localStorage.getItem("user");
+    if (currUser) {
+      setUser(JSON.parse(currUser));
+    }
+  }, []);
   return (
     <>
       <nav className=" flex flex-row items-center flex-wrap p-3  ">
         <div className="flex-1">
           <Link href="/" passHref>
-            <Image
-              src="/Images/Logo/Agriconnect_logo.png"
-              className="cursor-pointer"
-              alt="logo"
-              width={220}
-              height={120}
-            />
+            <div>
+              <Image
+                src="/Images/Logo/Agriconnect_logo.png"
+                className="cursor-pointer"
+                alt="logo"
+                width={220}
+                height={120}
+              />
+            </div>
           </Link>
         </div>
 
@@ -43,21 +55,39 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-1">
-          <div className={` flex items-center justify-end mr-5 md_max:hidden`}>
-            <Image
-              src="/images/Icons/Arrow_icon.png"
-              alt="arrow-icon"
-              width={30}
-              height={30}
-            />
-            <Link href="/signup" passHref>
-              <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
-                Sign Up
+          {user ? (
+            <div className="flex justify-end">
+              <p className="font-dnsansItal text-[20px] mr-10">
+                Welcome 😊 {user.user_name}
               </p>
-            </Link>
-          </div>
+              <Link href="/" passHref>
+                <p
+                  className="font-dnsansItal text-[20px] cursor-pointer"
+                  onClick={() => onSignOut()}
+                >
+                  Sign Out
+                </p>
+              </Link>
+            </div>
+          ) : (
+            <div
+              className={` flex items-center justify-end mr-5 md_max:hidden`}
+            >
+              <Image
+                src="/images/Icons/Arrow_icon.png"
+                alt="arrow-icon"
+                width={30}
+                height={30}
+              />
+              <Link href="/signup" passHref>
+                <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
+                  Sign Up
+                </p>
+              </Link>
+            </div>
+          )}
         </div>
-        <biutton
+        <button
           className="flex flex-col h-12 w-12 border-2  rounded justify-center cursor-pointer items-center group md:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
@@ -80,7 +110,7 @@ const Navbar = () => {
                 : "opacity-50 group-hover:opacity-100"
             }`}
           />
-        </biutton>
+        </button>
         {isOpen && <MobileNavLine />}
       </nav>
     </>

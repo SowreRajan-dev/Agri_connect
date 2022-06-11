@@ -4,7 +4,10 @@ import ReactStars from "react-stars";
 import Link from "next/link";
 function ProductCard({ pids, product, imageUrl, location, weight }) {
   return (
-    <div className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl ">
+    <div
+      className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl "
+      key={pids}
+    >
       <div>
         <Image
           src={imageUrl}

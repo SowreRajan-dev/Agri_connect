@@ -1,5 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
+import { useContext } from "react";
 import ConnectTogether from "../components/ConnectTogether/ConnectTogether";
 import FarmingContent from "../components/FarmingContent/FarmingContent";
 import FarmToHome from "../components/FarmToHome/FarmToHome";

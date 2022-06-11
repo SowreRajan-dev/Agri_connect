@@ -1,20 +1,59 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import ConnectTogether from "../components/ConnectTogether/ConnectTogether";
 import styles from "../styles/signin.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-function signin() {
+function Signin() {
+  const [emailUser, setEmailUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const currUser = localStorage.getItem("currentUser");
+    if (currUser) {
+      setUser(JSON.parse(currUser));
+    }
+  }, []);
+
+  const signIn = async () => {
+    console.log(emailUser, password);
+    try {
+      const verifyUser = await axios.post("http://localhost:3000/api/login", {
+        email: emailUser,
+        password,
+      });
+
+      const { email, user_name, id, mobile } = verifyUser.data.data;
+      try {
+        localStorage.removeItem("currentUser");
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ email, user_name, id, mobile })
+        );
+        setUser(verifyUser.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
   return (
     <>
       <Link href="/" passHref>
-        <Image
-          src="/Images/Logo/Agriconnect_logo.png"
-          className="cursor-pointer "
-          alt="logo"
-          width={220}
-          height={120}
-        />
+        <div>
+          <Image
+            src="/Images/Logo/Agriconnect_logo.png"
+            className="cursor-pointer "
+            alt="logo"
+            width={220}
+            height={120}
+          />
+        </div>
       </Link>
       <div className={styles.whole}>
         <ConnectTogether />
@@ -33,13 +72,25 @@ function signin() {
         <div className={styles.place}>
           <div className={styles.login}>
             <h2 className={styles.jh}>LOGIN</h2>
-            <input className={styles.km} type="text" placeholder="E-Mail" />
+            <input
+              className={styles.km}
+              type="text"
+              placeholder="E-Mail"
+              onChange={(e) => {
+                setEmailUser(e.target.value);
+              }}
+            />
             <input
               className={styles.ks}
               type="password"
               placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
-            <button className={styles.btn}>Sign in</button>
+            <button className={styles.btn} onClick={() => signIn()}>
+              Sign in
+            </button>
           </div>
           <div className={styles.signup}>
             <div className={styles.wrap}>
@@ -64,4 +115,4 @@ function signin() {
   );
 }
 
-export default signin;
+export default Signin;

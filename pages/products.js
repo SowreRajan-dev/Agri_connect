@@ -10,15 +10,12 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { products, searchProducts } from "../testData";
 
 function Product() {
-  const [product, setProducts] = useState("");
-
-  const [foundProduct, setFoundProduct] = useState();
   return (
     <>
       <Navbar />
 
       <div className="w-full ">
-        <div className="w-[100%] h-[400px] relative flex items-center  justify-center divide-black opacity-75">
+        <div className="w-[100%] h-[400px] relative flex items-center  justify-center divide-black opacity-75 ">
           <Image
             src="/Images/search.png"
             className="bg-cover"
