@@ -1,15 +1,32 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Styles from "../styles/Products.module.css";
 import Footer from "../components/Footer/Footer";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import ProductSearchCard from "../components/ProductSearchCard/ProductSearchCard";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { products, searchProducts } from "../testData";
 
 function Product() {
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchInput !== "") {
+      const filteredProduct = products.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      });
+      setFilteredResults(filteredProduct);
+    }
+  };
+  console.log(searchInput);
+  console.log(filteredResults);
+
   return (
     <>
       <Navbar />
@@ -31,6 +48,7 @@ function Product() {
                   type="text"
                   placeholder="Search the product"
                   className="w-full h-full p-5 focus:outline-none"
+                  onChange={(e) => searchItems(e.target.value)}
                 />
                 <button className="w-[50px] h-[45px] bg-black hover:bg-[#252424] rounded-full">
                   <div className="flex items-center justify-center">
@@ -47,6 +65,36 @@ function Product() {
           </div>
         </div>
       </div>
+      {filteredResults.length > 0 && searchInput.length > 1 ? (
+        <>
+          <p className="ml-10 font-medium text-xl"> Search Results....</p>
+          <div className="flex flex-col items-center">
+            <div>
+              {filteredResults.map((product) => {
+                return (
+                  <div
+                    key={product.id}
+                    className="cursor-pointer hover:scale-105 transition duration-150 ease-out hover:ease-in"
+                  >
+                    <ProductCard
+                      product={product}
+                      pids={product.id}
+                      imageUrl={product.imageUrl}
+                      productName={product.name}
+                      location={product.location}
+                      price={product.price}
+                      weight={product.weight}
+                      key={product.id}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
 
       <div className="mx-28 my-24">
         <div className="mb-5">
@@ -58,25 +106,35 @@ function Product() {
             height="28px"
           />
         </div>
-
         <div className="">
           <div className={`${Styles.productCards} mb-10 cursor-pointer `}>
-            {products.map((product) => (
-              <>
-                <div
-                  className="hover:scale-105 transition duration-150 ease-out hover:ease-in"
-                  key={product.id}
-                >
-                  <ProductCard
-                    product={product.name}
-                    pids={product.id}
-                    imageUrl={product.imageUrl}
-                    location={product.location}
-                  />
-                </div>
-              </>
-            ))}
+            {products.map(
+              (product, index) =>
+                index > 3 && (
+                  <>
+                    <div
+                      className="hover:scale-105 transition duration-150 ease-out hover:ease-in"
+                      key={product.id}
+                    >
+                      <ProductCard
+                        productName={product.name}
+                        pids={product.id}
+                        imageUrl={product.imageUrl}
+                        location={product.location}
+                        product={product}
+                        price={product.price}
+                        weight={product.weight}
+                      />
+                    </div>
+                  </>
+                )
+            )}
           </div>
+          <p className="font-medium text-lg hover:underline hover:text-blue-500">
+            <Link href="/shoppingproducts" passHref>
+              ... Search other products here
+            </Link>
+          </p>
         </div>
       </div>
       <div>
@@ -93,14 +151,16 @@ function Product() {
         <div className={`${Styles.nftcards} `}>
           {searchProducts.map((product) => (
             <>
-              <div key={product.id}>
-                <ProductSearchCard
-                  name={product.productName}
-                  type={product.type}
-                  productImg={product.imageUrl}
-                  bgColor={product.bgColor}
-                />
-              </div>
+              <Link href={`/product/category/${product.type}`} passHref>
+                <div key={product.id}>
+                  <ProductSearchCard
+                    name={product.productName}
+                    type={product.type.toLowerCase()}
+                    productImg={product.imageUrl}
+                    bgColor={product.bgColor}
+                  />
+                </div>
+              </Link>
             </>
           ))}
         </div>

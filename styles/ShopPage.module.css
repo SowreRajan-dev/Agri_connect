@@ -1,0 +1,35 @@
+.title {
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 0 1rem 1rem;
+}
+
+.container {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 2rem;
+  place-items: center;
+}
+
+.cards:hover {
+  scale: 1.5;
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 1150px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+}
+@media screen and (max-width: 786px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+  }
+}

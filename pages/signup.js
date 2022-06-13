@@ -28,6 +28,10 @@ function Signup() {
       localStorage.setItem("currentUser", JSON.stringify(createdUser));
       router.push("/signin");
     }
+    const user = localStorage.getItem("user");
+    if (user) {
+      router.push("/");
+    }
   }, [createdUser, router]);
 
   const createUser = async () => {

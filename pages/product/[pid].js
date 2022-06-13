@@ -5,7 +5,7 @@ import { products } from "../../testData";
 
 const InduvialPost = (props) => {
   const { loadedProduct } = props;
-  const { id, name, weight, imageUrl, location } = loadedProduct;
+  const { id, name, price, imageUrl, location, weight } = loadedProduct;
   return (
     <div>
       <Navbar />
@@ -40,6 +40,7 @@ const InduvialPost = (props) => {
               <p className={Styles.p}>
                 Price:{" "}
                 <span className={Styles.span} id={Styles.price}>
+                  ${price}
                   {weight}
                 </span>
               </p>

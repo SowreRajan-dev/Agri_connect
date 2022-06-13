@@ -17,7 +17,10 @@ function Signin() {
     if (currUser) {
       setUser(JSON.parse(currUser));
     }
-  }, []);
+    const customer = localStorage.getItem("user");
+    if (!customer) return;
+    router.push("/");
+  }, [router]);
 
   const signIn = async () => {
     console.log(emailUser, password);
@@ -35,6 +38,7 @@ function Signin() {
           JSON.stringify({ email, user_name, id, mobile })
         );
         setUser(verifyUser.data.data);
+        router.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -62,11 +66,6 @@ function Signin() {
           <h1>
             Discover our <b>Products</b>
           </h1>
-          <input
-            className={styles.box}
-            type="text"
-            placeholder="Search Our Products"
-          />
         </div>
 
         <div className={styles.place}>
