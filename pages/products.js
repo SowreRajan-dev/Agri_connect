@@ -24,8 +24,6 @@ function Product() {
       setFilteredResults(filteredProduct);
     }
   };
-  console.log(searchInput);
-  console.log(filteredResults);
 
   return (
     <>
@@ -110,7 +108,7 @@ function Product() {
           <div className={`${Styles.productCards} mb-10 cursor-pointer `}>
             {products.map(
               (product, index) =>
-                index > 3 && (
+                index < 3 && (
                   <>
                     <div
                       className="hover:scale-105 transition duration-150 ease-out hover:ease-in"

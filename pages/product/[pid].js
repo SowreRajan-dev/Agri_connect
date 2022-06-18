@@ -40,7 +40,7 @@ const InduvialPost = (props) => {
               <p className={Styles.p}>
                 Price:{" "}
                 <span className={Styles.span} id={Styles.price}>
-                  ${price}
+                  ₹{price}
                   {weight}
                 </span>
               </p>

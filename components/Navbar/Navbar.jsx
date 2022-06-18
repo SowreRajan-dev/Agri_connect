@@ -4,21 +4,22 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Styles from "../../styles/Nav.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/userSlice";
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-
+  const currentUser = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-
+  const dispatch = useDispatch();
   const getItemsCount = () => {
     return cart.reduce((accumulator, item) => accumulator + item.quantity, 0);
   };
 
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
   const onSignOut = () => {
-    localStorage.removeItem("user");
+    dispatch(logout());
     setUser(null);
   };
   useEffect(() => {

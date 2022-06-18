@@ -62,7 +62,7 @@ function ProductCard({
         </div>
         <div className="text-xm font-semibold">
           <h3>
-            $ {price}
+            ₹ {price}
             {weight}
           </h3>
         </div>

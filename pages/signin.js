@@ -5,12 +5,17 @@ import styles from "../styles/signin.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/userSlice";
 
 function Signin() {
   const [emailUser, setEmailUser] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user);
+  const cartItems = useSelector((state) => state.cart);
 
   useEffect(() => {
     const currUser = localStorage.getItem("currentUser");
@@ -38,7 +43,12 @@ function Signin() {
           JSON.stringify({ email, user_name, id, mobile })
         );
         setUser(verifyUser.data.data);
-        router.push("/");
+        dispatch(login(verifyUser.data.data));
+        if (cartItems.length > 0) {
+          router.push("/cart");
+        } else {
+          router.push("/");
+        }
       } catch (err) {
         console.log(err);
       }
