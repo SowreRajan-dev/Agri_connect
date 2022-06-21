@@ -54,10 +54,12 @@ model product {
   created_at  DateTime @default(now())
   description String
   id          String   @id @default(uuid())
-  // image       String?
+  image       String?
   name        String
   price       Int
+  weight      String   @default("/kg")
   quantity    Int
+  location    String   @default("0km")
   updated_at  DateTime @updatedAt
   cart        cart[]
 }

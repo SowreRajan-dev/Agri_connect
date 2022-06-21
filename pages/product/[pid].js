@@ -1,11 +1,11 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Styles from "../../styles/IndivualProductPage.module.css";
 import ReactStars from "react-stars";
-import { products } from "../../testData";
+import axios from "axios";
 
 const InduvialPost = (props) => {
   const { loadedProduct } = props;
-  const { id, name, price, imageUrl, location, weight } = loadedProduct;
+  const { id, name, price, image, location, weight } = loadedProduct;
   return (
     <div>
       <Navbar />
@@ -15,20 +15,20 @@ const InduvialPost = (props) => {
           <div className={Styles.itemimageparent}>
             <div className={Styles.itemlistvertical}>
               <div className={Styles.thumbbox}>
-                <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                <img className={Styles.img} src={image} alt="thumbnail" />
               </div>
               <div className={Styles.thumbbox}>
-                <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                <img className={Styles.img} src={image} alt="thumbnail" />
               </div>
               <div className={Styles.thumbbox}>
-                <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                <img className={Styles.img} src={image} alt="thumbnail" />
               </div>
               <div className={Styles.thumbbox}>
-                <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                <img className={Styles.img} src={image} alt="thumbnail" />
               </div>
             </div>
             <div className={Styles.itemimagemain}>
-              <img className={Styles.img} src={imageUrl} alt="source image" />
+              <img className={Styles.img} src={image} alt="source image" />
             </div>
           </div>
           <div className={Styles.iteminfoparent}>
@@ -49,10 +49,10 @@ const InduvialPost = (props) => {
             <div className={Styles.selectitems}>
               <div className={Styles.changecolor}>
                 <div className={Styles.thumbbox}>
-                  <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                  <img className={Styles.img} src={image} alt="thumbnail" />
                 </div>
                 <div className={Styles.thumbbox}>
-                  <img className={Styles.img} src={imageUrl} alt="thumbnail" />
+                  <img className={Styles.img} src={image} alt="thumbnail" />
                 </div>
               </div>
 
@@ -80,18 +80,23 @@ export default InduvialPost;
 export async function getStaticProps(context) {
   const { params } = context;
   const productId = params.pid;
-  const product = products.find(
-    (product) => product.id.toString() === productId
+  const product = await axios.get(
+    `http://localhost:3000/api/product/${productId}`
   );
+  // const product = products.data.find(
+  //   (product) => product.id.toString() === productId
+  // );
+  console.log(productId, product.data);
   return {
     props: {
-      loadedProduct: product,
+      loadedProduct: product.data,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const pids = products.map((product) => product.id.toString());
+  const products = await axios.get("http://localhost:3000/api/products");
+  const pids = products.data.map((product) => product.id.toString());
   const params = pids.map((id) => ({ params: { pid: id } }));
   return {
     paths: params,

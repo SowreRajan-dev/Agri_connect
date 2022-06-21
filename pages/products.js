@@ -7,8 +7,9 @@ import Link from "next/link";
 import ProductSearchCard from "../components/ProductSearchCard/ProductSearchCard";
 import ProductCard from "../components/ProductCard/ProductCard";
 import { products, searchProducts } from "../testData";
+import axios from "axios";
 
-function Product() {
+function Product({ products }) {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
 
@@ -108,7 +109,7 @@ function Product() {
           <div className={`${Styles.productCards} mb-10 cursor-pointer `}>
             {products.map(
               (product, index) =>
-                index < 3 && (
+                index > 3 && (
                   <>
                     <div
                       className="hover:scale-105 transition duration-150 ease-out hover:ease-in"
@@ -117,7 +118,7 @@ function Product() {
                       <ProductCard
                         productName={product.name}
                         pids={product.id}
-                        imageUrl={product.imageUrl}
+                        imageUrl={product.image}
                         location={product.location}
                         product={product}
                         price={product.price}
@@ -169,3 +170,13 @@ function Product() {
 }
 
 export default Product;
+
+export async function getServerSideProps(context) {
+  const products = await axios.get("http://localhost:3000/api/products");
+
+  return {
+    props: {
+      products: products.data,
+    },
+  };
+}

@@ -13,14 +13,13 @@ function Cart() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
 
-  console.log(user);
   const dispatch = useDispatch();
-  const getTotalPrice = () => {
+  function getTotalPrice() {
     return cart.reduce(
       (accumulator, item) => accumulator + item.quantity * item.price,
       0
     );
-  };
+  }
 
   return (
     <>
@@ -38,33 +37,42 @@ function Cart() {
               <div>Actions</div>
               <div>Total Price</div>
             </div>
-            {cart.map((item) => (
-              <div className={styles.body} key={item.id}>
-                <div className={styles.image}>
-                  <Image
-                    src={item.imageUrl}
-                    height="90"
-                    width="65"
-                    alt="itemImage"
-                  />
-                </div>
-                <p>{item.name}</p>
-                <p>₹ {item.price}</p>
-                <p>{item.quantity}</p>
-                <div className={styles.buttons}>
-                  <button onClick={() => dispatch(incrementQuantity(item.id))}>
-                    +
-                  </button>
-                  <button onClick={() => dispatch(decrementQuantity(item.id))}>
-                    -
-                  </button>
-                  <button onClick={() => dispatch(removeFromCart(item.id))}>
-                    x
-                  </button>
-                </div>
-                <p>₹ {item.price * item.quantity}</p>
-              </div>
-            ))}
+            {cart.map(
+              (item) => (
+                console.log(item),
+                (
+                  <div className={styles.body} key={item.id}>
+                    <div className={styles.image}>
+                      <Image
+                        src={item.image}
+                        height="90"
+                        width="65"
+                        alt="itemImage"
+                      />
+                    </div>
+                    <p>{item.name}</p>
+                    <p>₹ {item.price}</p>
+                    <p>{item.quantity}</p>
+                    <div className={styles.buttons}>
+                      <button
+                        onClick={() => dispatch(incrementQuantity(item.id))}
+                      >
+                        +
+                      </button>
+                      <button
+                        onClick={() => dispatch(decrementQuantity(item.id))}
+                      >
+                        -
+                      </button>
+                      <button onClick={() => dispatch(removeFromCart(item.id))}>
+                        x
+                      </button>
+                    </div>
+                    <p>₹ {item.price * item.quantity}</p>
+                  </div>
+                )
+              )
+            )}
             <h2>
               <b>Grand Total:</b> ₹ {getTotalPrice()}
             </h2>

@@ -1,9 +1,9 @@
 import React from "react";
 import ProductCard from "../../../components/ProductCard/ProductCard";
-import { getProductsByCategory } from "../../api/products/[category]";
 import styles from "../../../styles/category.module.css";
 import { useRouter } from "next/router";
 import Navbar from "../../../components/Navbar/Navbar";
+import axios from "axios";
 
 const CategoryPage = ({ products }) => {
   const router = useRouter();
@@ -13,17 +13,22 @@ const CategoryPage = ({ products }) => {
       <div className={styles.container}>
         <h1 className={styles.title}>Results for {router.query.category}</h1>
         <div className={styles.cards}>
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              productName={product.name}
-              product={product}
-              price={product.price}
-              imageUrl={product.imageUrl}
-              weight={product.weight}
-              location={product.location}
-            />
-          ))}
+          {products.map(
+            (product) => (
+              console.log(product),
+              (
+                <ProductCard
+                  key={product.id}
+                  productName={product.name}
+                  product={product}
+                  price={product.price}
+                  imageUrl={product.image}
+                  weight={product.weight}
+                  location={product.location}
+                />
+              )
+            )
+          )}
         </div>
       </div>
     </>
@@ -34,12 +39,14 @@ export default CategoryPage;
 
 export async function getServerSideProps(context) {
   const { category } = context.query;
-  console.log(category);
-  const products = await getProductsByCategory(category);
-
+  // console.log(category);
+  const products = await axios.get(
+    `http://localhost:3000/api/products/${category}`
+  );
+  // console.log(products.data);
   return {
     props: {
-      products,
+      products: products.data,
     },
   };
 }

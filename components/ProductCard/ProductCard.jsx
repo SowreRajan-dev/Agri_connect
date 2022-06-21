@@ -15,7 +15,7 @@ function ProductCard({
   weight,
 }) {
   const dispatch = useDispatch();
-
+  const onAddProducts = () => {};
   return (
     <div
       className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl "

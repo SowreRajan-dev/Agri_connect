@@ -2,7 +2,7 @@ import React from "react";
 import ProductCard from "../components/ProductCard/ProductCard";
 import styles from "../styles/ShopPage.module.css";
 import Navbar from "../components/Navbar/Navbar";
-import { getProducts } from "./api/products";
+import axios from "axios";
 
 const ShoppingProducts = ({ products }) => {
   return (
@@ -11,23 +11,28 @@ const ShoppingProducts = ({ products }) => {
       <div className={styles.container}>
         <h1 className={styles.title}>All Results</h1>
         <div className={styles.cards}>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="hover:scale-105 transition duration-150 ease-out hover:ease-in cursor-pointer"
-            >
-              <ProductCard
-                key={product.id}
-                productName={product.name}
-                pids={product.id}
-                imageUrl={product.imageUrl}
-                location={product.location}
-                product={product}
-                price={product.price}
-                weight={product.weight}
-              />
-            </div>
-          ))}
+          {products.map(
+            (product) => (
+              console.log(product.image),
+              (
+                <div
+                  key={product.id}
+                  className="hover:scale-105 transition duration-150 ease-out hover:ease-in cursor-pointer"
+                >
+                  <ProductCard
+                    key={product.id}
+                    productName={product.name}
+                    pids={product.id}
+                    imageUrl={product.image}
+                    location={product.location}
+                    product={product}
+                    price={product.price}
+                    weight={product.weight}
+                  />
+                </div>
+              )
+            )
+          )}
         </div>
       </div>
     </>
@@ -36,12 +41,12 @@ const ShoppingProducts = ({ products }) => {
 
 export default ShoppingProducts;
 
-export async function getStaticProps() {
-  const products = await getProducts();
-  // console.log("products in static props", products);
+export async function getServerSideProps(context) {
+  const products = await axios.get("http://localhost:3000/api/products");
+  console.log(products.data);
   return {
     props: {
-      products,
+      products: products.data,
     },
   };
 }
