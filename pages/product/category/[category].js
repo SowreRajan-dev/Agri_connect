@@ -39,11 +39,9 @@ export default CategoryPage;
 
 export async function getServerSideProps(context) {
   const { category } = context.query;
-  // console.log(category);
   const products = await axios.get(
     `http://localhost:3000/api/products/${category}`
   );
-  // console.log(products.data);
   return {
     props: {
       products: products.data,

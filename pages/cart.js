@@ -9,9 +9,34 @@ import {
   removeFromCart,
 } from "../redux/cartSlice";
 import Link from "next/link";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
+
+  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+  const stripePromise = loadStripe(publishableKey);
+  const totalPrice = getTotalPrice();
+
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise;
+    const checkoutSession = await axios.post("/api/create-stripe-session", {
+      item: cart,
+    });
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    console.log("result", result);
+    if (result.error) {
+      console.log(result.error.message);
+    }
+  };
+
+  const onCartCheckout = () => {
+    createCheckoutSession();
+  };
 
   const dispatch = useDispatch();
   function getTotalPrice() {
@@ -78,7 +103,10 @@ function Cart() {
             </h2>
             {user.isLoggedIn ? (
               <div className="flex justify-end">
-                <button className="flex  placeholder:border-2 rounded-[12px] bg-[#20E58F] hover:bg-[#229764]  border-transparent focus:border-transparent focus:ring-0  text-white   items-center p-2">
+                <button
+                  className="flex  placeholder:border-2 rounded-[12px] bg-[#20E58F] hover:bg-[#229764]  border-transparent focus:border-transparent focus:ring-0  text-white   items-center p-2"
+                  onClick={onCartCheckout}
+                >
                   <Image
                     src="/Images/Icons/shopping-cart.png"
                     width="20px"

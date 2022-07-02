@@ -10,7 +10,6 @@ const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const currentUser = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const getItemsCount = () => {
@@ -76,7 +75,7 @@ const Navbar = () => {
           {user ? (
             <div className={`${Styles.navLeft} flex justify-end relative`}>
               <p
-                className={`${Styles.navUserbar} flex flex-wrap  font-dnsansItal text-[20px] mr-10 md_max:flex-row`}
+                className={`${Styles.navUserbar} flex flex-wrap  font-dnsansItal text-[20px] ml-10 mr-10 md_max:flex-row`}
               >
                 Welcome 😊 {user.user_name}
               </p>

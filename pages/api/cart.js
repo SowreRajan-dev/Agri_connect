@@ -12,13 +12,15 @@ async function handler(req, res) {
               id: userId,
             },
           },
+          price,
+          quantity,
+
+          status: cart_status.draft,
           product: {
             connect: {
               id: productId,
             },
           },
-          quantity,
-          status: cart_status.draft,
         },
       });
       res.status(200).json({

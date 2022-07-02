@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import ReactStars from "react-stars";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import axios from "axios";
 
 function ProductCard({
   pids,
@@ -15,7 +16,12 @@ function ProductCard({
   weight,
 }) {
   const dispatch = useDispatch();
-  const onAddProducts = () => {};
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const onAddProducts = async () => {
+    dispatch(addToCart(product));
+    if (!user.id && product) return;
+  };
   return (
     <div
       className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl "
@@ -48,7 +54,7 @@ function ProductCard({
           <div>
             <button
               className="flex border-2 rounded-[12px] bg-[#20E58F] hover:bg-[#229764]  border-transparent focus:border-transparent focus:ring-0  text-white   items-center p-2"
-              onClick={() => dispatch(addToCart(product))}
+              onClick={onAddProducts}
             >
               <Image
                 src="/Images/Icons/shopping-cart.png"

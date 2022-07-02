@@ -78,7 +78,7 @@ function Product({ products }) {
                     <ProductCard
                       product={product}
                       pids={product.id}
-                      imageUrl={product.imageUrl}
+                      imageUrl={product.image}
                       productName={product.name}
                       location={product.location}
                       price={product.price}

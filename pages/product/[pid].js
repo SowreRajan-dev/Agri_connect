@@ -2,10 +2,14 @@ import Navbar from "../../components/Navbar/Navbar";
 import Styles from "../../styles/IndivualProductPage.module.css";
 import ReactStars from "react-stars";
 import axios from "axios";
+import { addToCart } from "../../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const InduvialPost = (props) => {
   const { loadedProduct } = props;
   const { id, name, price, image, location, weight } = loadedProduct;
+  const dispatch = useDispatch();
+
   return (
     <div>
       <Navbar />
@@ -63,7 +67,10 @@ const InduvialPost = (props) => {
                   <li>In Stock</li>
                 </ul>
 
-                <button className="bg-blue-500 hover:bg-blue-700 my-5 text-white font-bold py-2 px-4 rounded">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 my-5 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => dispatch(addToCart(loadedProduct))}
+                >
                   Add to Cart
                 </button>
               </div>
@@ -83,10 +90,7 @@ export async function getStaticProps(context) {
   const product = await axios.get(
     `http://localhost:3000/api/product/${productId}`
   );
-  // const product = products.data.find(
-  //   (product) => product.id.toString() === productId
-  // );
-  console.log(productId, product.data);
+
   return {
     props: {
       loadedProduct: product.data,
