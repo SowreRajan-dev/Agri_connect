@@ -75,7 +75,7 @@ const Navbar = () => {
           {user ? (
             <div className={`${Styles.navLeft} flex justify-end relative`}>
               <p
-                className={`${Styles.navUserbar} flex flex-wrap  font-dnsansItal text-[20px] ml-10 mr-10 md_max:flex-row`}
+                className={`${Styles.navUserbar} flex flex-wrap  font-dnsansItal text-[20px] ml-10 mr-10 md_max:flex-row sm_max:text-[19px]`}
               >
                 Welcome 😊 {user.user_name}
               </p>

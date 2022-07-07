@@ -29,7 +29,6 @@ const cartSlice = createSlice({
       state.splice(index, 1);
     },
     resetCart: (state, action) => {
-      const index = state.findIndex((item) => item.id === action.payload);
       state.splice(0, state.length);
     },
   },

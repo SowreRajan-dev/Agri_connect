@@ -126,3 +126,21 @@
     place-items: center;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .nftcards {
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 20px;
+    place-items: center;
+    margin-right: 20px;
+  }
+  .productCards {
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 50px;
+    place-items: center;
+  }
+  .nftc {
+    width: 300px;
+    height: 430px;
+  }
+}

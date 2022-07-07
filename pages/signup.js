@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const router = useRouter();
@@ -36,6 +38,30 @@ function Signup() {
 
   const createUser = async () => {
     try {
+      if (
+        email === "" ||
+        username === "" ||
+        password === "" ||
+        confirmedPassword === "" ||
+        phonenumber === "" ||
+        street === "" ||
+        area === "" ||
+        city === "" ||
+        country === "" ||
+        state === "" ||
+        postalcode === "" ||
+        addressline1 === "" ||
+        addressline2 === ""
+      ) {
+        toast.error("Please fill in all fields", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        return;
+      }
+
       const user = {
         email,
         username,
@@ -78,7 +104,6 @@ function Signup() {
       console.log(err);
     }
   };
-  console.log(createdUser);
 
   return (
     <div className={styles.vvs}>
@@ -277,6 +302,7 @@ function Signup() {
               >
                 Sign Up
               </button>
+              <ToastContainer />
             </div>
             <div className="flex flex-wrap mt-10">
               <p className="text-gray-700 text-sm font-bold">

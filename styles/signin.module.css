@@ -58,6 +58,10 @@
   background: #64c5a2;
   color: white;
   border-radius: 12px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #004e16;
 }
 
 .ks {
@@ -104,6 +108,10 @@
   color: black;
   background: #ffffff;
   border-radius: 12px;
+  cursor: pointer;
+}
+.btn1:hover {
+  background: #d2fdde;
 }
 
 @media screen and (max-width: 770px) {
@@ -122,5 +130,14 @@
 @media screen and (max-width: 680px) {
   .box {
     width: 70%;
+  }
+}
+
+@media screen and (min-width: 300px) {
+  .km {
+    width: 100%;
+  }
+  .ks {
+    width: 100%;
   }
 }
