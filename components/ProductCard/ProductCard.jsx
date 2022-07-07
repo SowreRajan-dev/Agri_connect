@@ -24,7 +24,7 @@ function ProductCard({
   };
   return (
     <div
-      className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl "
+      className="w-[300px] h-[340px]  border-[#ac7d87] rounded-xl sm_max:mb-[50px]"
       key={pids}
     >
       <div>
@@ -47,7 +47,7 @@ function ProductCard({
             <p className="text-lg font-light">Location :</p>{" "}
             <p className="ml-5">{location} Apart</p>
           </span>
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <ReactStars count={5} size={35} color2={"#ffd700"} />{" "}
             <p className="ml-5 text-sm font-medium">2 reviews</p>
           </div>
@@ -66,7 +66,7 @@ function ProductCard({
             </button>
           </div>
         </div>
-        <div className="text-xm font-semibold">
+        <div className="text-sm font-semibold sm_max:text-x">
           <h3>
             ₹ {price}
             {weight}

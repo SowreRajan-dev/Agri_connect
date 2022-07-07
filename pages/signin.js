@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/userSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signin() {
   const [emailUser, setEmailUser] = useState("");
@@ -28,8 +30,16 @@ function Signin() {
   }, [router]);
 
   const signIn = async () => {
-    console.log(emailUser, password);
     try {
+      if (emailUser === "" || password === "") {
+        toast.error("Please fill in all fields", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        return;
+      }
       const verifyUser = await axios.post("http://localhost:3000/api/login", {
         email: emailUser,
         password,
@@ -53,7 +63,7 @@ function Signin() {
         console.log(err);
       }
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err.response.data);
     }
   };
   return (
@@ -100,6 +110,7 @@ function Signin() {
             <button className={styles.btn} onClick={() => signIn()}>
               Sign in
             </button>
+            <ToastContainer />
           </div>
           <div className={styles.signup}>
             <div className={styles.wrap}>

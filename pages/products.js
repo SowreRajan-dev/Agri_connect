@@ -31,16 +31,24 @@ function Product({ products }) {
       <Navbar />
 
       <div className="w-full ">
-        <div className="w-[100%] h-[400px] relative flex items-center  justify-center divide-black opacity-75 ">
-          <Image
-            src="/Images/search.png"
-            className="bg-cover"
-            alt="searchbg"
-            layout="fill"
-            objectFit="contain"
-          />
-
-          <div className="absolute w-96 ">
+        <div className="w-full h-[400px] relative flex items-center  justify-center divide-black opacity-75 ">
+          <div className="w-full h-full sm_max:hidden">
+            <Image
+              src="/Images/search.png"
+              layout="fill"
+              objectFit="contain"
+              alt="searchBg"
+            />
+          </div>
+          <div className="md:hidden">
+            <Image
+              src="/Images/search.png"
+              layout="fill"
+              objectFit="cover"
+              alt="searchBg"
+            />
+          </div>
+          <div className="absolute w-96 sm_max:w-[80%] ">
             <div className="flex items-center justify-center mt-10  ">
               <div className="flex items-center bg-white border-2 border-[#000] w-full h-[60px] text-center p-3 font-poppins rounded-md">
                 <input
@@ -66,8 +74,11 @@ function Product({ products }) {
       </div>
       {filteredResults.length > 0 && searchInput.length > 1 ? (
         <>
-          <p className="ml-10 font-medium text-xl"> Search Results....</p>
-          <div className="flex flex-col items-center">
+          <p className="ml-10 font-medium text-xl sm_max:mt-10">
+            {" "}
+            Search Results....
+          </p>
+          <div className="flex flex-col items-center sm_max:mt-10">
             <div>
               {filteredResults.map((product) => {
                 return (
@@ -95,7 +106,7 @@ function Product({ products }) {
         <></>
       )}
 
-      <div className="mx-28 my-24">
+      <div className="mx-28 my-24 sm_max:mx-5 ">
         <div className="mb-5">
           <h3 className="text-3xl font-abel ">Products Available Nearby</h3>
           <Image
@@ -106,7 +117,7 @@ function Product({ products }) {
           />
         </div>
         <div className="">
-          <div className={`${Styles.productCards} mb-10 cursor-pointer `}>
+          <div className={`${Styles.productCards} mb-10 cursor-pointer  `}>
             {products.map(
               (product, index) =>
                 index > 3 && (
@@ -137,7 +148,7 @@ function Product({ products }) {
         </div>
       </div>
       <div>
-        <div className="ml-24">
+        <div className="ml-24 sm_max:ml-5">
           <h3 className="text-3xl  font-abel">Fruits And Vegetables</h3>
           <Image
             src="/Images/Icons/downCurve.png"

@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { cartReducer } from "./redux/cartSlice";
+import { orderReducer } from "./redux/orderSlice";
 import { userReducer } from "./redux/userSlice";
 
 const persistConfig = {
@@ -12,13 +13,17 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
+  order: orderReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

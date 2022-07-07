@@ -4,13 +4,21 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { resetCart } from "../redux/cartSlice";
 import { runFireworks } from "../lib/utils";
+import { useRouter } from "next/router";
+
 const Success = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const router = useRouter();
+  const order = useSelector((state) => state.order);
+
   useEffect(() => {
     dispatch(resetCart(cart));
+    setTimeout(() => {
+      router.push("/products");
+    }, 10000);
     runFireworks();
-  }, []);
+  }, [cart, dispatch, router]);
   return (
     <div className="w-[100vw] h-[100vh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center w-[80%] h-[50%] bg-[#DCDCDC] rounded-lg">

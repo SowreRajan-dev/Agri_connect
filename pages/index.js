@@ -6,7 +6,6 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import NewsFeed from "../components/NewsFeed/NewsFeed";
 import OrdersLocation from "../components/OrdersLocation/OrdersLocation";
-import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
