@@ -7,7 +7,7 @@ module.exports = withPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
-    disable: prod ? false : true,
+    // disable: prod ? false : true,
   },
   reactStrictMode: true,
   images: {

@@ -115,3 +115,41 @@ export const searchProducts = [
     bgColor: "#EDBF69",
   },
 ];
+
+export const customerReviews = [
+  {
+    name: "Jaga",
+    stars: 4,
+    comments: "Nil",
+  },
+  {
+    name: "Ajay",
+    stars: 4,
+    comments: "Nil",
+  },
+  {
+    name: "Kushi",
+    stars: 5,
+    comments: "Nil",
+  },
+  {
+    name: "Anu",
+    stars: 8,
+    comments: "Nil",
+  },
+  {
+    name: "Kavi",
+    stars: 6,
+    comments: "Nil",
+  },
+  {
+    name: "Shasha",
+    stars: 3,
+    comments: "Nil",
+  },
+  {
+    name: "Kuzhali",
+    stars: 10,
+    comments: "Nil",
+  },
+];

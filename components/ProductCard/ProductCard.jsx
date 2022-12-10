@@ -4,7 +4,8 @@ import ReactStars from "react-stars";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
-import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductCard({
   pids,
@@ -20,6 +21,12 @@ function ProductCard({
   const user = useSelector((state) => state.user);
   const onAddProducts = async () => {
     dispatch(addToCart(product));
+    toast.success("Added product successfully!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+    });
     if (!user.id && product) return;
   };
   return (
@@ -73,6 +80,7 @@ function ProductCard({
           </h3>
         </div>
       </div>
+      {/* <ToastContainer /> */}
     </div>
   );
 }
