@@ -92,17 +92,32 @@ const Navbar = () => {
             <div
               className={` flex items-center justify-end mr-5 md_max:hidden`}
             >
-              <Image
-                src="/images/Icons/Arrow_icon.png"
-                alt="arrow-icon"
-                width={30}
-                height={30}
-              />
-              <Link href="/signin" passHref>
-                <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
-                  Sign In
-                </p>
-              </Link>
+              <div className="flex">
+                <Image
+                  src="/images/Icons/Arrow_icon.png"
+                  alt="arrow-icon"
+                  width={30}
+                  height={30}
+                />
+                <Link href="/signin" passHref>
+                  <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
+                    Sign In
+                  </p>
+                </Link>
+              </div>
+              <div className="flex ml-10">
+                <Image
+                  src="/images/Icons/Arrow_icon.png"
+                  alt="arrow-icon"
+                  width={30}
+                  height={30}
+                />
+                <Link href="/dashboard/admin/signin" passHref>
+                  <p className="ml-2 font-dnsansItal cursor-pointer text-[20px]">
+                    Admin Sign In
+                  </p>
+                </Link>
+              </div>
             </div>
           )}
         </div>

@@ -16,11 +16,6 @@
   place-items: center;
 }
 
-.cards:hover {
-  scale: 1.5;
-  transition: all 0.5s ease-in-out;
-}
-
 @media screen and (max-width: 1150px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);

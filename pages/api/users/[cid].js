@@ -1,11 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../login";
 
 export default async function handler(req, res) {
   const { method } = req;
   if (method == "GET") {
-    console.log("requested", req.query);
     const { cid } = req.query;
     if (cid) {
       try {

@@ -45,12 +45,12 @@ function Signin() {
         password,
       });
 
-      const { email, user_name, id, mobile } = verifyUser.data.data;
+      const { email, user_name, id, mobile, role } = verifyUser.data.data;
       try {
         localStorage.removeItem("currentUser");
         localStorage.setItem(
           "user",
-          JSON.stringify({ email, user_name, id, mobile })
+          JSON.stringify({ email, user_name, id, mobile, role })
         );
         setUser(verifyUser.data.data);
         dispatch(login(verifyUser.data.data));

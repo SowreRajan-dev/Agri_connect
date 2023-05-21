@@ -1,7 +1,7 @@
 import React from "react";
-import DashBoardNavBar from "../../../components/DashBoardNavBar/DashBoardNavBar";
-import DashBoardSidebar from "../../../components/DashBoardSidebar/DashBoardSidebar";
-import Dashboard from "../../../components/Dashboard/Dashboard";
+import DashBoardNavBar from "../../../../components/DashBoardNavBar/DashBoardNavBar";
+import DashBoardSidebar from "../../../../components/DashBoardSidebar/DashBoardSidebar";
+import Dashboard from "../../../../components/Dashboard/Dashboard";
 import { useRouter } from "next/router";
 
 function DashBoard() {

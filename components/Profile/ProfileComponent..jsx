@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function ProfileComponent() {
+function ProfileComponent({ admin, productsSold }) {
   return (
     <div className="w-[100%] h-full p-10  ">
       <div className="flex flex-col">
@@ -16,34 +16,47 @@ function ProfileComponent() {
               className="rounded-full "
             />
             <div>
-              <p className="text-[30px] font-poppins">VINISH S</p>
-              <p className="text-[16px] font-poppins font-extralight">
-                vinish@admin.agriconnect.com
+              <p className="text-[30px] font-poppins">{admin.user_name}</p>
+              <p className="text-[16px] font-poppins font-light">
+                {admin.email}
               </p>
-              <p className="text-[16px] font-poppins font-extralight">#914</p>
+              <p className="text-[16px] font-poppins font-light">#914</p>
             </div>
           </div>
           <div className="mt-10">
             <p className="text-[30px] font-poppins">Sale Products</p>
             <div className="p-10 border border-[#C9C9C9] shadow-md">
-              <p className="text-[16px] font-poppins font-extralight">
-                <b className="font-bold">Products : </b> CARROT, BANNANA FRENCH
-                BEANS, CABBAGE
-              </p>
+              <div className=" flex">
+                <b className="font-bold ">Products : </b>
+                {productsSold.length > 0 ? (
+                  productsSold?.map((name, index) => (
+                    <div key={index}>
+                      <p
+                        key={index}
+                        className="text-[16px] font-poppins font-light ml-2"
+                      >
+                        {name} {index < productsSold?.length - 1 ? ", " : "."}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="ml-2 font-roboto">No Products Yet!</p>
+                )}
+              </div>
             </div>
           </div>
           <div className="mt-10">
             <p className="text-[30px] font-poppins">Reviews</p>
             <div className="p-10 border border-[#C9C9C9] shadow-md">
-              <p className="text-[16px] font-poppins font-extralight">
+              <p className="text-[16px] font-poppins font-light">
                 <b className="font-bold">AVG Review : </b> 4.5/5
               </p>
             </div>
           </div>
           <div className="mt-10">
             <p className="text-[30px] font-poppins">Income</p>
-            <div className="p-10 border border-[#C9C9C9] shadow-md">
-              <p className="text-[16px] font-poppins font-extralight">
+            <div className="p-10 border border-[#bb8282] shadow-md">
+              <p className="text-[16px] font-poppins font-light">
                 <b className="font-bold">Income Generated : </b> 4.5/5
               </p>
             </div>

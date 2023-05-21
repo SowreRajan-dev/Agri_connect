@@ -120,7 +120,8 @@ function Product({ products }) {
           <div className={`${Styles.productCards} mb-10 cursor-pointer  `}>
             {products.map(
               (product, index) =>
-                index > 3 && (
+                index > 2 &&
+                parseInt(product.location) <= 5 && (
                   <>
                     <div
                       className="hover:scale-105 transition duration-150 ease-out hover:ease-in"

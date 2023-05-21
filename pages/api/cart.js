@@ -1,6 +1,6 @@
-import { PrismaClient, cart_status } from "@prisma/client";
+import { cart_status } from "@prisma/client";
+import { prisma } from "./login";
 
-const prisma = new PrismaClient();
 async function handler(req, res) {
   if (req.method === "POST") {
     const { userId, productId, quantity, price } = req.body;

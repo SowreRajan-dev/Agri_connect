@@ -7,11 +7,16 @@ module.exports = withPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
-    // disable: prod ? false : true,
+    disable: prod ? false : true,
   },
   reactStrictMode: true,
   images: {
-    domains: ["images.unsplash.com", "unsplash.com", "rb.gy"],
+    domains: [
+      "images.unsplash.com",
+      "unsplash.com",
+      "rb.gy",
+      "res.cloudinary.com",
+    ],
   },
   webpack5: true,
   webpack: (config) => {

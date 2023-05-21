@@ -1,7 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { products } from "../../../testData";
-
-const prisma = new PrismaClient();
+import { prisma } from "../login";
 
 export default async function handler(req, res) {
   const { category } = req.query;

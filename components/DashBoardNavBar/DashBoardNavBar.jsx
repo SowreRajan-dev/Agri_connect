@@ -1,30 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "../../styles/DashBoardNav.module.css";
 import { useRouter } from "next/router";
+import { logout } from "../../redux/adminSlice";
+import { useDispatch } from "react-redux";
 
 function DashBoardNavBar() {
   const router = useRouter();
-  let user = true;
+  const dispatch = useDispatch();
+  const [admin, setAdmin] = useState(null);
+
   const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    const currAdmin = localStorage.getItem("admin");
+    if (currAdmin) {
+      setAdmin(JSON.parse(currAdmin));
+    }
+  }, []);
 
+  const onSignOut = () => {
+    dispatch(logout());
+    setAdmin(null);
+    router.push("/dashboard/admin/signin");
+  };
   return (
     <>
       <nav className=" flex flex-row items-center flex-wrap p-3  ">
         <div className="flex-1">
-          <Link href="/" passHref>
-            <div>
-              <Image
-                src="/Images/Logo/Agriconnect_logo.png"
-                className="cursor-pointer"
-                alt="logo"
-                width={220}
-                height={120}
-              />
-            </div>
-          </Link>
+          {/* <Link href="/" passHref> */}
+          <div>
+            <Image
+              src="/Images/Logo/Agriconnect_logo.png"
+              className="cursor-pointer"
+              alt="logo"
+              width={220}
+              height={120}
+            />
+          </div>
+          {/* </Link> */}
         </div>
 
         <div className={`${Styles.navLinks} flex-1`}>
@@ -32,13 +47,13 @@ function DashBoardNavBar() {
             className={`${Styles.navRes} flex items-center justify-between font-dnsansItal text-[20px] `}
           >
             <div className={`${router.pathname === "/" ? "active" : ""} `}>
-              <Link href="/dashboard/admin/1">Home</Link>
+              <Link href="/dashboard/admin/profile/1">Home</Link>
             </div>
 
             <div
               className={`${router.pathname === "/products" ? "active" : ""}`}
             >
-              <Link href="/products">Products</Link>
+              <Link href="/dashboard/admin/products">Products</Link>
             </div>
             <div className={`${router.pathname === "/about" ? "active" : ""}`}>
               <Link href="/about">More </Link>
@@ -46,7 +61,7 @@ function DashBoardNavBar() {
           </div>
         </div>
         <div className="flex-1">
-          {user ? (
+          {admin ? (
             <div className={`${Styles.navLeft} flex justify-end relative`}>
               <Image
                 src="/Images/Icons/arrowAdmin.png"
@@ -57,7 +72,7 @@ function DashBoardNavBar() {
               <p
                 className={`${Styles.navUserbar} flex flex-wrap  font-dnsansItal text-[20px] ml-3 mr-10 md_max:flex-row sm_max:text-[19px]`}
               >
-                Vinish {user.user_name}
+                {admin.user_name}
               </p>
               <Link href="/" passHref>
                 <p
@@ -119,7 +134,7 @@ function DashBoardNavBar() {
 const MobileNavLine = () => {
   const router = useRouter();
   const cart = useSelector((state) => state.cart);
-  const [user, setUser] = useState(null);
+  const [user, setAdmin] = useState(null);
 
   return (
     <>

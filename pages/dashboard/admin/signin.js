@@ -1,13 +1,56 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../../styles/signinDashboard.module.css";
+import styles from "../../../styles/signinDashboard.module.css";
 import { ToastContainer, toast } from "react-toastify";
-import ConnectTogether from "../../components/ConnectTogether/ConnectTogether";
+import ConnectTogether from "../../../components/ConnectTogether/ConnectTogether";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { login } from "../../../redux/adminSlice";
 
 function Signin() {
-  const [emailUser, setEmailUser] = useState("");
+  const [emailAdmin, setEmailAdmin] = useState("");
   const [password, setPassword] = useState("");
+  const [admin, setAdmin] = useState(null);
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const onSignIn = async () => {
+    try {
+      if (emailAdmin === "" || password === "") {
+        toast.error("Please fill in all fields", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        return;
+      } else {
+        const verifyAdmin = await axios.post(
+          "http://localhost:3000/api/admin/login",
+          {
+            email: emailAdmin,
+            password,
+          }
+        );
+        const { email, user_name, id, mobile } = verifyAdmin.data.data;
+        try {
+          localStorage.setItem(
+            "admin",
+            JSON.stringify({ email, user_name, id, mobile })
+          );
+          setAdmin(verifyAdmin.data.data);
+          dispatch(login(verifyAdmin.data.data));
+          router.push(`/dashboard/admin/profile/${id}`);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <Link href="/" passHref>
@@ -38,7 +81,7 @@ function Signin() {
               type="text"
               placeholder="E-Mail"
               onChange={(e) => {
-                setEmailUser(e.target.value);
+                setEmailAdmin(e.target.value);
               }}
             />
             <input
@@ -49,20 +92,15 @@ function Signin() {
                 setPassword(e.target.value);
               }}
             />
-            <button className={styles.btn} onClick={() => signIn()}>
+            <button className={styles.btn} onClick={() => onSignIn()}>
               Sign in
             </button>
             <ToastContainer />
           </div>
           <div className={styles.signup}>
             <div className={styles.wrap}>
-              <h2>
-                <b>NEW HERE ?</b>
-              </h2>
-              <h4>sign up and discover our Products</h4>
-              <button className={styles.btn1}>
-                <Link href="/signup">Sign up</Link>{" "}
-              </button>
+              Connecting End to End agriculture Solutions to help the world
+              thrive
             </div>
           </div>
         </div>

@@ -7,7 +7,16 @@ import { useDispatch } from "react-redux";
 
 const InduvialPost = (props) => {
   const { loadedProduct } = props;
-  const { id, name, price, image, location, weight } = loadedProduct;
+  const {
+    id,
+    name,
+    price,
+    image,
+    location,
+    weight,
+    quantity,
+    productOwnerName,
+  } = loadedProduct;
   const dispatch = useDispatch();
 
   return (
@@ -42,10 +51,16 @@ const InduvialPost = (props) => {
                 <ReactStars count={5} size={35} color2={"#ffd700"} />
               </div>
               <p className={Styles.p}>
-                Price:{" "}
+                <b>Price: </b>
                 <span className={Styles.span} id={Styles.price}>
                   ₹{price}
                   {weight}
+                </span>
+              </p>
+              <p className={Styles.p}>
+                <b>Sold by: </b>
+                <span className={Styles.span} id={Styles.price}>
+                  {productOwnerName}
                 </span>
               </p>
             </div>
@@ -62,9 +77,22 @@ const InduvialPost = (props) => {
 
               <div className={Styles.description}>
                 <ul className={Styles.ul}>
-                  <li>Location: {location} Away</li>
+                  <li>
+                    {" "}
+                    <p>
+                      <b>Location: </b>
+                      {location} Away
+                    </p>
+                  </li>
                   <li>Fresh Quality</li>
-                  <li>In Stock</li>
+                  <li>
+                    <p>
+                      <b>
+                        {quantity} {weight}{" "}
+                      </b>
+                      In Stock
+                    </p>
+                  </li>
                 </ul>
 
                 <button
@@ -90,7 +118,6 @@ export async function getStaticProps(context) {
   const product = await axios.get(
     `http://localhost:3000/api/product/${productId}`
   );
-
   return {
     props: {
       loadedProduct: product.data,

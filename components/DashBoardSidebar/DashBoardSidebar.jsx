@@ -16,6 +16,10 @@ import { useRouter } from "next/router";
 
 function DashBoardSidebar({ children }) {
   const router = useRouter();
+
+  const onSignOut = () => {
+    window.location.href = "/";
+  };
   return (
     <div className="flex">
       <div>
@@ -33,26 +37,26 @@ function DashBoardSidebar({ children }) {
             <div className=" my-4 border-b border-gray-100 pb-4">
               <div
                 className={`flex mb-2 justify-start items-center gap-4 ${
-                  router.asPath === "/dashboard/admin/1"
+                  router.asPath === "/dashboard/admin/profile/1"
                     ? "bg-gray-900 "
                     : "hover:bg-gray-900"
                 } pl-5  p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto`}
               >
                 <MdOutlineSpaceDashboard
                   className={`text-2xl  ${
-                    router.asPath === "/dashboard/admin/1"
+                    router.asPath === "/dashboard/admin/profile/1"
                       ? "text-white"
                       : "text-gray-600 group-hover:text-white"
                   } `}
                 />
                 <h3
                   className={`text-base  ${
-                    router.asPath === "/dashboard/admin/1"
+                    router.asPath === "/dashboard/admin/profile/1"
                       ? "text-white"
                       : "text-gray-600 group-hover:text-white"
                   } font-semibold `}
                 >
-                  <Link href="/dashboard/admin/1">Dashboard</Link>
+                  <Link href="/dashboard/admin/profile/1">Dashboard</Link>
                 </h3>
               </div>
               <div
@@ -81,26 +85,26 @@ function DashBoardSidebar({ children }) {
               </div>
               <div
                 className={`flex  mb-2 justify-start items-center gap-4 pl-5 ${
-                  router.asPath === "/dashboard/products"
+                  router.asPath === "/dashboard/admin/products"
                     ? "bg-gray-900 "
                     : "hover:bg-gray-900"
                 } p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto`}
               >
                 <BiShoppingBag
                   className={`text-2xl ${
-                    router.asPath === "/dashboard/products"
+                    router.asPath === "/dashboard/admin/products"
                       ? "text-white"
                       : "text-gray-600 group-hover:text-white"
                   } `}
                 />
                 <h3
                   className={`text-base ${
-                    router.asPath === "/dashboard/products"
+                    router.asPath === "/dashboard/admin/products"
                       ? "text-white"
                       : "text-gray-600 group-hover:text-white"
                   } font-semibold `}
                 >
-                  Products
+                  <Link href="/dashboard/admin/products">Products</Link>
                 </h3>
               </div>
               <div
@@ -127,10 +131,28 @@ function DashBoardSidebar({ children }) {
                   <Link href="/dashboard/reviews">Reviews</Link>
                 </h3>
               </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <BsBoxSeam className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Orders
+              <div
+                className={`flex  mb-2 justify-start items-center gap-4 pl-5 ${
+                  router.asPath === "/dashboard/addproduct"
+                    ? "bg-gray-900 "
+                    : "hover:bg-gray-900"
+                }  p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto`}
+              >
+                <BsBoxSeam
+                  className={`text-2xl ${
+                    router.asPath === "/dashboard/addproduct"
+                      ? "text-white"
+                      : "text-gray-600 group-hover:text-white"
+                  }  `}
+                />
+                <h3
+                  className={`text-base ${
+                    router.asPath === "/dashboard/addproduct"
+                      ? "text-white"
+                      : "text-gray-600 group-hover:text-white"
+                  }  font-semibold `}
+                >
+                  <Link href="/dashboard/addproduct">Add Product</Link>
                 </h3>
               </div>
               <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
@@ -156,7 +178,7 @@ function DashBoardSidebar({ children }) {
               </div>
             </div>
             {/* logout */}
-            <div className=" my-4">
+            <div className=" my-4" onClick={onSignOut}>
               <div className="flex mb-2 justify-start items-center gap-4 pl-5 border border-gray-200  hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
                 <MdOutlineLogout className="text-2xl text-gray-600 group-hover:text-white " />
                 <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">

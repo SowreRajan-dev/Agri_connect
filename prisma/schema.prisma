@@ -19,8 +19,10 @@ model address {
   state        String
   street       String
   updated_at   DateTime @updatedAt
-  user_id      String
-  user         user     @relation(fields: [user_id], references: [id])
+  user_id      String?
+  admin_id     String?
+  user         user?    @relation(fields: [user_id], references: [id])
+  admin        admin?   @relation(fields: [admin_id], references: [id])
 }
 
 model cart {
@@ -50,35 +52,86 @@ model order {
 }
 
 model product {
-  category    String?
-  created_at  DateTime @default(now())
-  description String
-  id          String   @id @default(uuid())
-  image       String?
-  name        String
-  price       Int
-  weight      String   @default("/kg")
-  quantity    Int
-  location    String   @default("0km")
-  updated_at  DateTime @updatedAt
-  cart        cart[]
+  category         String?
+  created_at       DateTime @default(now())
+  description      String
+  id               String   @id @default(uuid())
+  image            String?
+  name             String
+  price            Int
+  weight           String   @default("/kg")
+  quantity         Int
+  location         String   @default("0km")
+  updated_at       DateTime @updatedAt
+  user_id          String   @default("")
+  productOwnerName String   @default("")
+  admin_id         String
+
+  //RelationShips
+  cart         cart[]
+  purchase     purchase[]
+  productOwner admin      @relation(fields: [admin_id], references: [id])
 }
 
 model user {
+  created_at      DateTime @default(now())
+  email           String   @unique
+  user_name       String
+  hashed_password String
+  role            String   @default("USER")
+  id              String   @id @default(uuid())
+  mobile          String?
+  updated_at      DateTime @updatedAt
+  reviewRate      Int?     @default(0) @map("IF(role='ADMIN',reviewRate,NULL)")
+
+  // Relationships
+  address  address[]
+  cart     cart[]
+  order    order[]
+  purchase purchase[]
+  reviews  review[]   @relation("UserReviews")
+}
+
+model purchase {
+  id          String   @id @default(uuid())
+  productId   String
+  userId      String
+  quantity    Int
+  totalCost   Int
+  purchasedAt DateTime @default(now())
+
+  // Relationships
+  product product @relation(fields: [productId], references: [id])
+  user    user    @relation(fields: [userId], references: [id])
+}
+
+model admin {
   created_at      DateTime  @default(now())
   email           String    @unique
   user_name       String
   hashed_password String
-  role            Role      @default(USER)
+  role            String    @default("ADMIN")
   id              String    @id @default(uuid())
   mobile          String?
   updated_at      DateTime  @updatedAt
-  // image           String?
-  // accounts        Account[]
-  // sessions        Session[]
+  // Relationships
   address         address[]
-  cart            cart[]
-  order           order[]
+  reviews         review[]  @relation("AdminReviews")
+  productsSold    product[]
+}
+
+model review {
+  id         String   @id @default(uuid())
+  userId     String
+  adminId    String
+  starRating Int      @default(0)
+  feedback   String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relationships
+  user  user  @relation("UserReviews", fields: [userId], references: [id])
+  admin admin @relation("AdminReviews", fields: [adminId], references: [id])
 }
 
 enum cart_status {
@@ -100,10 +153,10 @@ enum order_status {
   shipped
 }
 
-enum Role {
-  USER
-  ADMIN
-}
+// enum Role {
+//   USER
+//   ADMIN
+// }
 
 // model Account {
 //   id                String  @id @default(cuid())
