@@ -11,7 +11,8 @@ import {
 import Link from "next/link";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
-import { addToOrder } from "../redux/orderSlice";
+import { addToOrder, resetOrder } from "../redux/orderSlice";
+import { resetPurchaseOrder } from "../redux/purchaseSlice";
 
 function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -27,6 +28,7 @@ function Cart() {
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
     });
+
     if (result.error) {
       console.log(result.error.message);
     }

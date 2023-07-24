@@ -52,7 +52,7 @@ function ProductCard({
           </Link>
           <span className="flex">
             <p className="text-lg font-light">Location :</p>{" "}
-            <p className="ml-5">{location} Apart</p>
+            <p className="ml-5">{location} km Apart</p>
           </span>
           <div className="flex items-center ">
             <ReactStars count={5} size={35} color2={"#ffd700"} />{" "}

@@ -63,14 +63,12 @@ model product {
   quantity         Int
   location         String   @default("0km")
   updated_at       DateTime @updatedAt
-  user_id          String   @default("")
   productOwnerName String   @default("")
   admin_id         String
-
+  purchasesDone    Int      @default(0)
   //RelationShips
-  cart         cart[]
-  purchase     purchase[]
-  productOwner admin      @relation(fields: [admin_id], references: [id])
+  cart             cart[]
+  productOwner     admin    @relation(fields: [admin_id], references: [id])
 }
 
 model user {
@@ -93,31 +91,33 @@ model user {
 }
 
 model purchase {
-  id          String   @id @default(uuid())
-  productId   String
-  userId      String
-  quantity    Int
-  totalCost   Int
-  purchasedAt DateTime @default(now())
+  id              String       @id @default(uuid())
+  userId          String
+  totalCost       Int
+  productsBrought Json
+  purchasedAt     DateTime     @default(now())
+  adminId         String
+  orderStatus     order_status @default(pending)
 
   // Relationships
-  product product @relation(fields: [productId], references: [id])
-  user    user    @relation(fields: [userId], references: [id])
+  user     user  @relation(fields: [userId], references: [id])
+  purchase admin @relation(fields: [adminId], references: [id])
 }
 
 model admin {
-  created_at      DateTime  @default(now())
-  email           String    @unique
+  created_at      DateTime   @default(now())
+  email           String     @unique
   user_name       String
   hashed_password String
-  role            String    @default("ADMIN")
-  id              String    @id @default(uuid())
+  role            String     @default("ADMIN")
+  id              String     @id @default(uuid())
   mobile          String?
-  updated_at      DateTime  @updatedAt
+  updated_at      DateTime   @updatedAt
   // Relationships
   address         address[]
-  reviews         review[]  @relation("AdminReviews")
+  reviews         review[]   @relation("AdminReviews")
   productsSold    product[]
+  purchase        purchase[]
 }
 
 model review {

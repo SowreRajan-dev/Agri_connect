@@ -9,7 +9,7 @@ module.exports = withPWA({
     skipWaiting: true,
     disable: prod ? false : true,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: [
       "images.unsplash.com",

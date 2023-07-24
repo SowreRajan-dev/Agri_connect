@@ -8,10 +8,15 @@ import ProductSearchCard from "../components/ProductSearchCard/ProductSearchCard
 import ProductCard from "../components/ProductCard/ProductCard";
 import { products, searchProducts } from "../testData";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Product({ products }) {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const purchase = useSelector((state) => state.purchase);
+
+  console.log(purchase);
+  console.table(purchase);
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);

@@ -5,6 +5,7 @@ import { cartReducer } from "./redux/cartSlice";
 import { orderReducer } from "./redux/orderSlice";
 import { userReducer } from "./redux/userSlice";
 import { adminReducer } from "./redux/adminSlice";
+import { purchaseReducer } from "./redux/purchaseSlice";
 
 const persistConfig = {
   key: "root",
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   order: orderReducer,
   admin: adminReducer,
+  purchase: purchaseReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

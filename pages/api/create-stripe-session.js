@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             quantity: item.quantity,
           };
         }),
-        success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
+        success_url: `${process.env.NEXT_PUBLIC_URL}/paymentupdation`,
         cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
       };
       const session = await stripe.checkout.sessions.create(params);

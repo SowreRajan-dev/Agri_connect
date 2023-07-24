@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Styles from "../../styles/Nav.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/userSlice";
+import { resetOrder } from "../../redux/orderSlice";
 const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -57,6 +58,13 @@ const Navbar = () => {
             >
               <Link href="/products">Products</Link>
             </div>
+            {user && (
+              <div
+                className={`${router.pathname === "/orders" ? "active" : ""}`}
+              >
+                <Link href="/orders">Orders</Link>
+              </div>
+            )}
             <div className={`${router.pathname === "/about" ? "active" : ""}`}>
               <Link href="/about">About</Link>
             </div>

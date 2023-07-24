@@ -17,10 +17,10 @@ function ProfileComponent({ admin, productsSold }) {
             />
             <div>
               <p className="text-[30px] font-poppins">{admin.user_name}</p>
-              <p className="text-[16px] font-poppins font-light">
+              <p className="text-[16px] font-poppins font-normal">
                 {admin.email}
               </p>
-              <p className="text-[16px] font-poppins font-light">#914</p>
+              <p className="text-[16px] font-poppins font-normal">#914</p>
             </div>
           </div>
           <div className="mt-10">
@@ -57,7 +57,7 @@ function ProfileComponent({ admin, productsSold }) {
             <p className="text-[30px] font-poppins">Income</p>
             <div className="p-10 border border-[#bb8282] shadow-md">
               <p className="text-[16px] font-poppins font-light">
-                <b className="font-bold">Income Generated : </b> 4.5/5
+                <b className="font-bold">Income Generated : </b>₹ 600
               </p>
             </div>
           </div>

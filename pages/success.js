@@ -2,20 +2,23 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { BsBagCheckFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import { resetCart } from "../redux/cartSlice";
 import { runFireworks } from "../lib/utils";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { resetCart } from "../redux/cartSlice";
 
 const Success = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const router = useRouter();
-  const order = useSelector((state) => state.order);
+  // const order = useSelector((state) => state.order);
+  const user = useSelector((state) => state.user)?.user;
 
   useEffect(() => {
     dispatch(resetCart(cart));
     setTimeout(() => {
-      router.push("/products");
+      router.push("/orders");
     }, 10000);
     runFireworks();
   }, [cart, dispatch, router]);
@@ -48,6 +51,7 @@ const Success = () => {
           </button>
         </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 };

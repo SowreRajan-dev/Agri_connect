@@ -13,22 +13,18 @@ const CategoryPage = ({ products }) => {
       <div className={styles.container}>
         <h1 className={styles.title}>Results for {router.query.category}</h1>
         <div className={styles.cards}>
-          {products.map(
-            (product) => (
-              console.log(product),
-              (
-                <ProductCard
-                  key={product.id}
-                  productName={product.name}
-                  product={product}
-                  price={product.price}
-                  imageUrl={product.image}
-                  weight={product.weight}
-                  location={product.location}
-                />
-              )
-            )
-          )}
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              pids={product.id}
+              productName={product.name}
+              product={product}
+              price={product.price}
+              imageUrl={product.image}
+              weight={product.weight}
+              location={product.location}
+            />
+          ))}
         </div>
       </div>
     </>
