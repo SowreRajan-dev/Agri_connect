@@ -7,7 +7,6 @@ import axios from "axios";
 import { useState } from "react";
 
 const Orders = () => {
-  const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const [orderPurchased, setOrderPurchased] = useState([]);
   const [ordersBrought, setOrdersBrought] = useState([]);
@@ -27,25 +26,38 @@ const Orders = () => {
     fetchOrderPurchased(user);
   }, [user]);
 
-  useEffect(() => {
-    if (orderPurchased.length > 0) {
-      const allProductsBrought = orderPurchased.reduce((accumulator, order) => {
-        return accumulator.concat(order.productsBrought);
-      }, []);
-
-      setOrdersBrought(allProductsBrought);
-    }
-  }, [orderPurchased]);
   return (
     <>
       <Navbar />
-      {orderPurchased.length > 0 && (
-        <OrderComponent
-          orders={ordersBrought}
-          user={user.user}
-          orderStatus={orderStatus}
-        />
-      )}
+      <div className="p-5">
+        <h2 className="text-2xl font-semibold mb-4">My Orders</h2>
+      </div>
+      <div className="p-5">
+        {orderPurchased.length > 0 &&
+          orderPurchased.map((order, index) => (
+            <>
+              <div key={index} className="p-5">
+                <p className="font-poppins text-lg">
+                  Ordered product-{" "}
+                  {new Date(order?.purchasedAt).toLocaleString() ===
+                  new Date().toLocaleString()
+                    ? "Today"
+                    : new Date(order?.purchasedAt).toLocaleString()}
+                </p>
+                <div className="flex items-center justify-around flex-wrap gap-4">
+                  {order.productsBrought.map((product) => (
+                    <OrderComponent
+                      product={product}
+                      index={index}
+                      orderStatus={"pending"}
+                      key={product.id}
+                    />
+                  ))}
+                </div>
+              </div>
+            </>
+          ))}
+      </div>
     </>
   );
 };

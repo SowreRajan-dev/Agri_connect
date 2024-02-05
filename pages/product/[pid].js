@@ -4,6 +4,7 @@ import ReactStars from "react-stars";
 import axios from "axios";
 import { addToCart } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const InduvialPost = (props) => {
   const { loadedProduct } = props;
@@ -12,13 +13,17 @@ const InduvialPost = (props) => {
     name,
     price,
     image,
+    description,
     location,
     weight,
     quantity,
     productOwnerName,
   } = loadedProduct;
   const dispatch = useDispatch();
-
+  const [stars, setStars] = useState(0);
+  const closeFeedBack = () => {
+    setStars(0);
+  };
   return (
     <div>
       <Navbar />
@@ -46,9 +51,48 @@ const InduvialPost = (props) => {
           </div>
           <div className={Styles.iteminfoparent}>
             <div className={Styles.maininfo}>
-              <h4 className={Styles.h4}>{name}</h4>
+              <h4 className={` text-[1.5rem]`}>
+                <b>{name}</b>
+              </h4>
+              <div>
+                <p className="text-[1.2rem] font-bold text-[#000]">
+                  Description
+                </p>
+                <p className="font-poppins">{description}</p>
+              </div>
+
               <div className={Styles.starrating}>
-                <ReactStars count={5} size={35} color2={"#ffd700"} />
+                <p className="text-[1.2rem] text-[#000]">
+                  <b>Review:</b>
+                </p>
+                <ReactStars
+                  count={5}
+                  size={35}
+                  value={stars}
+                  onChange={(noOfStars) => setStars(noOfStars)}
+                  color2={"#ffd700"}
+                />
+                {stars > 0 && (
+                  <div className="relative w-full p-5">
+                    <p
+                      className="absolute right-0 cursor-pointer"
+                      onClick={closeFeedBack}
+                    >
+                      X
+                    </p>
+                    <textarea
+                      name="feedback"
+                      id="feedback"
+                      cols="30"
+                      rows="2"
+                      placeholder="Write your reviews..."
+                      className="w-full focus:outline-none"
+                    ></textarea>
+                    <button className=" border-1 rounded-[12px] bg-[#20E58F] hover:bg-[#229764]  border-transparent focus:border-transparent focus:ring-0  text-white p-2">
+                      <p className="font-poppins">Submit</p>
+                    </button>
+                  </div>
+                )}
               </div>
               <p className={Styles.p}>
                 <b>Price: </b>
@@ -84,14 +128,16 @@ const InduvialPost = (props) => {
                       {location} Away
                     </p>
                   </li>
-                  <li>Fresh Quality</li>
+
                   <li>
-                    <p>
-                      <b>
-                        {quantity} {weight}{" "}
-                      </b>
-                      In Stock
-                    </p>
+                    <span className="flex">
+                      <p className="mr-2">
+                        <b>Quantity: </b>
+                      </p>
+                      <p>
+                        {quantity} {weight} In Stock
+                      </p>
+                    </span>
                   </li>
                 </ul>
 

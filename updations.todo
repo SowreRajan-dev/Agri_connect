@@ -1,21 +1,21 @@
-[] Fix the payment portal's quantity updation and crud based on it
-[] to make the purchase schema that accepts the array of product id purchased by an user in same purchase
-[] make private routes for /sucess /paymentUpdated and all routes
-[] hover effect on category section's card
-[] later migrations of cloud and server
-[] fetch the orders purchased
-[] migrate test db to original db
-[] hashed password functionality
-[] strong weak password check
-[] language support
-[] form validation -> password and phone number validation
-[] multiple images upload and upload to cloudinary
-[] display mulitple images in induvial product page
-[] product order updattion -> shipped,pending, delivered
+[] - Fix the payment portal's quantity updation and crud based on it
+[*] - to make the purchase schema that accepts the array of product id purchased by an user in same purchase
+[] - make private routes for /success /paymentUpdated and all routes
+[] - hover effect on category section's card
+[] - later migrations of cloud and server
+[*] - fetch the orders purchased
+[] - migrate test db to original db
+[] - hashed password functionality
+[] - strong weak password check
+[] - language support
+[] - form validation -> password and phone number validation
+[] - multiple images upload and upload to cloudinary
+[] - display mulitple images in induvial product page
+[] - product order updattion -> shipped,pending, delivered
 [] - update loading animation for all processes
 [] - make routefrom signup to home
 [] - "User Created" toast in login page after routing
-[]-email validation
+[] - email validation
 [] - email OTP , phone Number OTP
 [] - location getter in admin and track the location from users location
 [] - error page in stripe
@@ -23,3 +23,10 @@
 [] - error denoting admin not found in adminlogin
 [] - add lazy loading to images
 [] - add purchaseDone logic after product is bought
+[] - debouncing the search input in products page
+[] - make JWT based authentication
+[] - create users profile page
+[] - hide hashedPassword in response
+[] - hide api calls in frontend
+[] - change to professional map box api key or else request for google cloud api
+

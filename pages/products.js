@@ -14,10 +14,6 @@ function Product({ products }) {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const purchase = useSelector((state) => state.purchase);
-
-  console.log(purchase);
-  console.table(purchase);
-
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
     if (searchInput !== "") {

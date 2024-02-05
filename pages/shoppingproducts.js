@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
 
 const ShoppingProducts = ({ products }) => {
-  console.log(products);
   return (
     <>
       <Navbar />

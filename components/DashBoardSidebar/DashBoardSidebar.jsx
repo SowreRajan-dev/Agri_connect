@@ -13,13 +13,15 @@ import {
 import { CgProfile } from "react-icons/cg";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 function DashBoardSidebar({ children }) {
   const router = useRouter();
-
   const onSignOut = () => {
     window.location.href = "/";
   };
+
+  const { admin } = useSelector((state) => state.admin);
   return (
     <div className="flex">
       <div>
@@ -56,7 +58,9 @@ function DashBoardSidebar({ children }) {
                       : "text-gray-600 group-hover:text-white"
                   } font-semibold `}
                 >
-                  <Link href="/dashboard/admin/profile/1">Dashboard</Link>
+                  <Link href={`/dashboard/admin/profile/${admin.id}`}>
+                    Dashboard
+                  </Link>
                 </h3>
               </div>
               <div
@@ -155,10 +159,28 @@ function DashBoardSidebar({ children }) {
                   <Link href="/dashboard/addproduct">Add Product</Link>
                 </h3>
               </div>
-              <div className="flex  mb-2 justify-start items-center gap-4 pl-5 hover:bg-gray-900 p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto">
-                <BiUser className="text-2xl text-gray-600 group-hover:text-white " />
-                <h3 className="text-base text-gray-800 group-hover:text-white font-semibold ">
-                  Users
+              <div
+                className={`flex  mb-2 justify-start items-center gap-4 pl-5 ${
+                  router.asPath === "/dashboard/admin/users"
+                    ? "bg-gray-900 "
+                    : "hover:bg-gray-900"
+                }  p-2 rounded-md group cursor-pointer hover:shadow-lg m-auto`}
+              >
+                <BiUser
+                  className={`text-2xl ${
+                    router.asPath === "/dashboard/admin/users"
+                      ? "text-white"
+                      : "text-gray-600 group-hover:text-white"
+                  }  `}
+                />
+                <h3
+                  className={`text-base ${
+                    router.asPath === "/dashboard/admin/users"
+                      ? "text-white"
+                      : "text-gray-600 group-hover:text-white"
+                  }  font-semibold `}
+                >
+                  <Link href="/dashboard/admin/users">Users</Link>
                 </h3>
               </div>
             </div>

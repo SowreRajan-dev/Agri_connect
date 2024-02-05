@@ -6,10 +6,10 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import MapComponent from "../components/Map/MapComponent";
 
 function Signup() {
   const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +24,7 @@ function Signup() {
   const [addressline1, setAddressline1] = useState("");
   const [addressline2, setAddressline2] = useState("");
   const [createdUser, setCreatedUser] = useState(null);
+  const [getLocation, setGetLocation] = useState(null);
 
   useEffect(() => {
     if (createdUser !== null) {
@@ -293,6 +294,10 @@ function Signup() {
                 placeholder="Country"
                 onChange={(e) => setCountry(e.target.value)}
               />
+              {/* <div className="w-full h-[500px] ">
+                <p>map</p>
+                <MapComponent latitude={20.5937} longitude={78.9629} />
+              </div> */}
             </div>
             <div className="flex items-center justify-between">
               <button
